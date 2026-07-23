@@ -672,7 +672,7 @@ html, body {
     font-size: clamp(1rem, 2.8vw, 1.15rem);
     transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1),
                 transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-    margin-top: 8px;
+    margin-top: 50px;
 }
 
 .letter-emphasis.visible {
@@ -795,12 +795,14 @@ html, body {
     font-size: 2rem;
     margin-top: 24px;
     opacity: 0;
+    visibility: hidden;
     animation: heartbeat 1.5s ease-in-out infinite;
-    transition: opacity 1s ease 1.2s;
+    transition: opacity 1s ease 1.2s, visibility 1s ease 1.2s;
 }
 
 .finale-heart.visible {
     opacity: 0.8;
+    visibility: visible;
 }
 
 @keyframes heartbeat {
