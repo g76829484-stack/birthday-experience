@@ -672,6 +672,7 @@ html, body {
     font-size: clamp(1rem, 2.8vw, 1.15rem);
     transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1),
                 transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 8px;
 }
 
 .letter-emphasis.visible {
