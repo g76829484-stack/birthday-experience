@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Премиум поздравление с днём рождения для Ак Джамолидина">
+    <meta name="theme-color" content="#0a0a0f">
+    <title>С Днём Рождения!</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="fxCanvas" aria-hidden="true"></canvas>
+
+    <div class="grain-overlay" aria-hidden="true"></div>
+
+    <button id="audioToggle" class="audio-toggle" aria-label="Включить музыку" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+            <path class="audio-waves" d="M15.54 8.46a5 5 0 010 7.07"/>
+            <path class="audio-waves" d="M19.07 4.93a10 10 0 010 14.14"/>
+        </svg>
+    </button>
+    <audio id="bgMusic" loop preload="none">
+        <source src="assets/audio/birthday.mp3" type="audio/mpeg">
+    </audio>
+
+    <main>
+        <section id="scene-intro" class="scene active" aria-label="Вступление">
+            <div class="intro-particles" id="introParticles" aria-hidden="true"></div>
+            <div class="intro-light-orbs" aria-hidden="true">
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+                <div class="orb orb-3"></div>
+            </div>
+            <div class="intro-content">
+                <p id="introText1" class="intro-text">У меня есть кое-что для тебя...</p>
+                <button id="introText2" class="intro-text intro-cta" type="button">Нажми, чтобы открыть</button>
+            </div>
+        </section>
+
+        <section id="scene-envelope" class="scene" aria-label="Конверт">
+            <div class="envelope-scene">
+                <div id="envelope" class="envelope" role="button" tabindex="0" aria-label="Открыть конверт">
+                    <div class="envelope-shadow" aria-hidden="true"></div>
+                    <div class="envelope-body">
+                        <div class="envelope-back"></div>
+                        <div class="envelope-letter">
+                            <div class="letter-lines">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+                        <div class="envelope-flap">
+                            <div class="envelope-flap-inner"></div>
+                        </div>
+                        <div class="envelope-front">
+                            <div class="envelope-fold-left"></div>
+                            <div class="envelope-fold-right"></div>
+                        </div>
+                        <div class="envelope-seal">
+                            <div class="seal-inner">★</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="envelope-hint" aria-hidden="true">Нажми на конверт</p>
+            </div>
+        </section>
+
+        <section id="scene-opening" class="scene" aria-label="Открытие конверта">
+            <div class="opening-wrapper">
+                <div class="opening-envelope">
+                    <div class="opening-envelope-body">
+                        <div class="opening-back"></div>
+                        <div class="opening-letter">
+                            <div class="opening-letter-texture"></div>
+                        </div>
+                        <div class="opening-flap">
+                            <div class="opening-flap-inner"></div>
+                        </div>
+                        <div class="opening-front">
+                            <div class="opening-fold-l"></div>
+                            <div class="opening-fold-r"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="opening-glow" aria-hidden="true"></div>
+            </div>
+        </section>
+
+        <section id="scene-letter" class="scene" aria-label="Поздравление">
+            <div class="letter-scroll">
+                <div class="letter-card" id="letterCard">
+                    <div class="letter-card-glow" aria-hidden="true"></div>
+                    <h1 id="letterTitle" class="letter-title">С Днём Рождения,<br>дорогой Ак Джамолидин!</h1>
+                    <div class="letter-divider" aria-hidden="true"></div>
+                    <div class="letter-body" id="letterBody">
+                        <p class="letter-paragraph">Сегодня твой день, и мне хочется поздравить тебя не просто обычными словами. Хочется сказать тебе то, что иногда мы не говорим достаточно часто.</p>
+                        <p class="letter-paragraph letter-emphasis">Ты очень дорогой для нашей семьи человек. И, возможно, в обычной жизни мы не всегда говорим об этом вслух, но это не значит, что мы не ценим тебя.</p>
+                        <p class="letter-paragraph">Спасибо тебе за твою доброту, за твоё отношение к людям и за то, что ты всегда остаёшься собой.</p>
+                        <p class="letter-paragraph">Есть люди, рядом с которыми просто становится спокойнее. Люди, которых уважаешь и которым искренне желаешь всего самого хорошего. Для меня ты именно такой человек.</p>
+                        <p class="letter-paragraph">В этот день я хочу пожелать тебе не просто счастья. Я хочу, чтобы у тебя было как можно больше дней, когда ты по-настоящему счастлив. Чтобы после трудных дней всегда приходили хорошие. Чтобы в твоей жизни было больше моментов, которые хочется запомнить. Чтобы рядом всегда были люди, которые любят тебя искренне — не за что-то, а просто за то, что ты есть.</p>
+                        <p class="letter-paragraph">Пусть здоровье никогда тебя не подводит. Пусть в душе будет спокойствие. Пусть в доме всегда будет тепло, уют и радость. Пусть все твои планы и мечты постепенно становятся реальностью.</p>
+                        <p class="letter-paragraph">И пусть впереди у тебя будет ещё очень много счастливых лет, новых впечатлений, больших побед и простых, но очень важных моментов, которые делают жизнь по-настоящему красивой.</p>
+                        <p class="letter-paragraph letter-emphasis">Спасибо тебе за то, что ты есть.</p>
+                        <p class="letter-paragraph letter-emphasis">Я хочу, чтобы ты всегда помнил: ты важен, тебя любят и тобой дорожат.</p>
+                        <p class="letter-paragraph letter-final">С Днём Рождения, дорогой дядя ❤️<br><span class="letter-final-sub">Пусть каждый следующий год твоей жизни приносит тебе ещё больше счастья, спокойствия и поводов улыбаться.<br>От всей души ❤️</span></p>
+                    </div>
+                    <button id="continueBtn" class="continue-btn" type="button">
+                        <span>Продолжить</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="scene-finale" class="scene" aria-label="Финал">
+            <div class="finale-content">
+                <div class="finale-sparkles" id="finaleSparkles" aria-hidden="true"></div>
+                <h1 id="finaleTitle" class="finale-title">С Днём Рождения,<br>дорогой дядя ❤️</h1>
+                <p id="finaleSubtitle" class="finale-subtitle">От всей души ❤️</p>
+                <div class="finale-heart" aria-hidden="true">❤</div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
