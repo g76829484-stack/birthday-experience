@@ -185,10 +185,7 @@
 
     /* ---------- SCENE 4: LETTER ---------- */
     function showLetter() {
-        var letterScene = dom.scenes.letter;
-        if (letterScene) letterScene.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-
+        dom.scenes.letter.scrollTop = 0;
         addVisible(dom.letterCard, 200);
         addVisible(dom.letterTitle, 700);
 
