@@ -211,6 +211,9 @@
             addVisible(dom.finaleTitle, 300);
             addVisible(dom.finaleSubtitle, 900);
 
+            var finaleHeart = document.querySelector('.finale-heart');
+            addVisible(finaleHeart, 1200);
+
             resizeCanvas();
             state.fxRunning = true;
 

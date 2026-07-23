@@ -266,6 +266,42 @@ html, body {
     cursor: pointer;
 }
 
+.envelope-body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.envelope-shadow {
+    position: absolute;
+    width: 90%;
+    height: 20px;
+    bottom: -15px;
+    left: 5%;
+    background: radial-gradient(ellipse, rgba(0,0,0,0.4) 0%, transparent 70%);
+    filter: blur(8px);
+    z-index: 0;
+}
+
+.seal-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    color: #fff8e7;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.envelope-flap-inner {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #2a2235 0%, #221c30 100%);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
 .envelope:hover {
     transform: translateY(-8px) rotateX(-3deg);
     filter: drop-shadow(0 20px 40px rgba(212, 168, 83, 0.15));
@@ -398,12 +434,56 @@ html, body {
     animation: envelopeFloat 3s ease-in-out infinite;
 }
 
+.opening-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.opening-envelope-body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.opening-glow {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(circle, rgba(212,168,83,0.08) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.opening-flap-inner {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #2a2235 0%, #221c30 100%);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.opening-letter-texture {
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 8px,
+        rgba(0, 0, 0, 0.02) 8px,
+        rgba(0, 0, 0, 0.02) 9px
+    );
+    border-radius: 4px;
+}
+
 @keyframes envelopeFloat {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
 }
 
-.opening-envelope-back {
+.opening-back {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -412,7 +492,7 @@ html, body {
     box-shadow: 0 4px 20px var(--shadow-deep);
 }
 
-.opening-envelope-front {
+.opening-front {
     position: absolute;
     width: 100%;
     height: 60%;
@@ -424,7 +504,7 @@ html, body {
     overflow: hidden;
 }
 
-.opening-fold-left {
+.opening-fold-l {
     position: absolute;
     width: 50%;
     height: 100%;
@@ -432,7 +512,7 @@ html, body {
     background: linear-gradient(135deg, transparent 48%, rgba(255,255,255,0.03) 50%, transparent 52%);
 }
 
-.opening-fold-right {
+.opening-fold-r {
     position: absolute;
     width: 50%;
     height: 100%;
@@ -492,9 +572,18 @@ html, body {
     -webkit-overflow-scrolling: touch;
 }
 
+.letter-scroll {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px 0;
+}
+
 .letter-card {
     width: 100%;
     max-width: 600px;
+    position: relative;
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
@@ -509,6 +598,25 @@ html, body {
     transform: scale(0.92) translateY(30px);
     transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
                 transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.letter-card-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 50% 30%, rgba(212,168,83,0.06) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.letter-divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 24px;
+    opacity: 0.5;
 }
 
 .letter-card.visible {
@@ -671,6 +779,45 @@ html, body {
 .finale-subtitle.visible {
     opacity: 0.9;
     transform: translateY(0);
+}
+
+.finale-sparkles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.finale-heart {
+    font-size: 2rem;
+    margin-top: 24px;
+    opacity: 0;
+    animation: heartbeat 1.5s ease-in-out infinite;
+    transition: opacity 1s ease 1.2s;
+}
+
+.finale-heart.visible {
+    opacity: 0.8;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+.grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
 }
 
 /* ==============================
