@@ -156,6 +156,7 @@
         }, 400);
 
         setTimeout(function () {
+            state.isAnimating = false;
             transitionTo('opening').then(function () {
                 startOpeningAnimation();
             });
